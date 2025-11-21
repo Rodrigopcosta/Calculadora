@@ -1,10 +1,11 @@
 # Calculadora Online Profissional
 
-![https://calculo-rapido.netlify.app/](https://img.shields.io/badge/version-1.0.0-blue.svg)
-![https://github.com/Rodrigopcosta/Calculadora/blob/main/LICENSE](https://img.shields.io/badge/license-MIT-green.svg)
-![https://developer.mozilla.org/pt-BR/docs/Web/HTML](https://img.shields.io/badge/HTML5-E34F26?logo=html5&logoColor=white)
-![https://developer.mozilla.org/pt-BR/docs/Web/CSS](https://img.shields.io/badge/CSS3-1572B6?logo=css3&logoColor=white)
-![https://developer.mozilla.org/pt-BR/docs/Web/JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?logo=javascript&logoColor=black)
+[![Versão](https://img.shields.io/badge/version-1.0.0-blue.svg)](https://calculo-rapido.netlify.app/)
+[![Licença MIT](https://img.shields.io/badge/license-MIT-green.svg)](https://github.com/Rodrigopcosta/Calculadora/blob/main/LICENSE)
+[![HTML5](https://img.shields.io/badge/HTML5-E34F26?logo=html5&logoColor=white)](https://developer.mozilla.org/pt-BR/docs/Web/HTML)
+[![CSS3](https://img.shields.io/badge/CSS3-1572B6?logo=css3&logoColor=white)](https://developer.mozilla.org/pt-BR/docs/Web/CSS)
+[![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?logo=javascript&logoColor=black)](https://developer.mozilla.org/pt-BR/docs/Web/JavaScript)
+
 
 Uma calculadora online completa e profissional com modos básico e científico, desenvolvida com HTML, CSS e JavaScript puros, totalmente responsiva.
 
@@ -33,7 +34,7 @@ Uma calculadora online completa e profissional com modos básico e científico, 
 
 ## 🚀 Demo
 
-[Ver Demo ao Vivo](https://calculo-rapido.netlify.app/)
+<a href="https://calculo-rapido.netlify.app/" target="_blank">Ver Demo ao Vivo</a>
 
 ## 📸 Screenshots
 
