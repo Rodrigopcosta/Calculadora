@@ -4,10 +4,12 @@ let previousValue = ""
 let operation = null
 let shouldResetScreen = false
 let isScientificMode = false
+const calculationHistory = []
 
 // DOM Elements
 const resultDisplay = document.getElementById("result")
 const expressionDisplay = document.getElementById("expression")
+const historyDisplay = document.getElementById("history")
 const basicModeBtn = document.getElementById("basicMode")
 const scientificModeBtn = document.getElementById("scientificMode")
 const basicButtons = document.getElementById("basicButtons")
@@ -26,7 +28,7 @@ function setupEventListeners() {
   basicModeBtn.addEventListener("click", () => switchMode("basic"))
   scientificModeBtn.addEventListener("click", () => switchMode("scientific"))
 
-  // Button clicks
+  // Button clicks - attach to all .btn but prioritize operator class
   document.querySelectorAll(".btn").forEach((button) => {
     button.addEventListener("click", handleButtonClick)
   })
@@ -51,7 +53,18 @@ function switchMode(mode) {
 
 // Handle Button Clicks
 function handleButtonClick(e) {
-  const button = e.target
+  const button = e.target.closest(".btn") || e.target
+  if (!button) return
+
+  // If it's an operator button (has class 'operator'), handle operation first
+  if (button.classList.contains("operator")) {
+    const opValue = button.dataset.value
+    if (opValue) {
+      setOperation(opValue)
+    }
+    return
+  }
+
   const value = button.dataset.value
   const action = button.dataset.action
 
@@ -64,6 +77,8 @@ function handleButtonClick(e) {
 
 // Handle Number Input
 function handleNumber(num) {
+  // If we just completed an operation and flagged to reset screen,
+  // starting to type a number should replace the display.
   if (shouldResetScreen) {
     currentValue = ""
     shouldResetScreen = false
@@ -133,6 +148,12 @@ function clear() {
   previousValue = ""
   operation = null
   expressionDisplay.textContent = ""
+  shouldResetScreen = false
+
+  // Limpa também o histórico:
+  calculationHistory.length = 0
+  updateHistory()
+
   updateDisplay()
 }
 
@@ -152,19 +173,44 @@ function percentage() {
   updateDisplay()
 }
 
-// Set Operation
+// --------------------------------------------------------------
+// 🔧 SET OPERATION (TRECHO ALTERADO PEDIDO POR VOCÊ)
+// --------------------------------------------------------------
 function setOperation(op) {
+  // Se operador já existia e usuário ainda não digitou segundo número,
+  // apenas trocamos o operador e mostramos no visor
+  if (operation !== null && shouldResetScreen) {
+    operation = op
+    expressionDisplay.textContent = `${previousValue} ${getOperatorSymbol(op)}`
+    currentValue = op
+    updateDisplay()
+    return
+  }
+
+  // Se já tinha operação e usuário digitou o segundo número → calcula antes
   if (operation !== null) {
     calculate()
   }
+
   previousValue = currentValue
   operation = op
+
+  // Atualiza expressão acima
   expressionDisplay.textContent = `${previousValue} ${getOperatorSymbol(op)}`
+
+  // MOSTRAR O OPERADOR NO VISOR
+  currentValue = op
+  updateDisplay()
+
+  // O próximo número substitui o operador
   shouldResetScreen = true
 }
+// --------------------------------------------------------------
+
 
 // Calculate Result
 function calculate() {
+  // If no operation or user hasn't typed the second number yet, do nothing
   if (operation === null || shouldResetScreen) return
 
   const prev = Number.parseFloat(previousValue)
@@ -195,6 +241,12 @@ function calculate() {
       return
   }
 
+  // push to history
+  const historyEntry = `${previousValue} ${getOperatorSymbol(operation)} ${currentValue} = ${formatResult(result)}`
+  calculationHistory.push(historyEntry)
+  if (calculationHistory.length > 10) calculationHistory.shift()
+  updateHistory()
+
   currentValue = formatResult(result)
   operation = null
   previousValue = ""
@@ -206,6 +258,7 @@ function calculate() {
 // Scientific Operations
 function scientificOperation(op) {
   const value = Number.parseFloat(currentValue)
+  if (isNaN(value)) return
   let result
 
   switch (op) {
@@ -233,7 +286,14 @@ function scientificOperation(op) {
     case "exp":
       result = Math.exp(value)
       break
+    default:
+      return
   }
+
+  const historyEntry = `${op}(${currentValue}) = ${formatResult(result)}`
+  calculationHistory.push(historyEntry)
+  if (calculationHistory.length > 10) calculationHistory.shift()
+  updateHistory()
 
   currentValue = formatResult(result)
   shouldResetScreen = true
@@ -268,7 +328,18 @@ function getOperatorSymbol(op) {
 
 // Update Display
 function updateDisplay() {
-  resultDisplay.value = currentValue
+  if (resultDisplay) {
+    if (resultDisplay.tagName === "INPUT" || resultDisplay.tagName === "TEXTAREA") {
+      resultDisplay.value = currentValue
+    } else {
+      resultDisplay.textContent = currentValue
+    }
+  }
+}
+
+function updateHistory() {
+  if (!historyDisplay) return
+  historyDisplay.textContent = calculationHistory.join(" | ")
 }
 
 // Keyboard Support
@@ -278,7 +349,7 @@ function setupKeyboardSupport() {
       handleNumber(e.key)
     } else if (e.key === ".") {
       handleNumber(".")
-    } else if (e.key === "+" || e.key === "-" || e.key === "*" || e.key === "/") {
+    } else if (["+", "-", "*", "/"].includes(e.key)) {
       setOperation(e.key)
     } else if (e.key === "Enter" || e.key === "=") {
       e.preventDefault()
@@ -293,13 +364,3 @@ function setupKeyboardSupport() {
     }
   })
 }
-
-// Delegate operator buttons to setOperation
-document.addEventListener("click", (e) => {
-  if (e.target.classList.contains("operator")) {
-    const value = e.target.dataset.value
-    if (value) {
-      setOperation(value)
-    }
-  }
-})
