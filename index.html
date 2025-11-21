@@ -1,40 +1,247 @@
 <!DOCTYPE html>
-<html lang="pt-br">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Calculadora</title>
-    <link rel="stylesheet" href="/CSS/style.css" />
-    <script src="/js/scripts.js" defer></script>
-  </head>
-  <body>
-    <div id="calc">
-      <h3>Calculadora</h3>
-      <div id="operations">
-        <div id="previous-operation"></div>
-        <div id="current-operation"></div>
-      </div>
-      <div id="buttons-container">
-        <button>CE</button>
-        <button>C</button>
-        <button>DEL</button>
-        <button>/</button>
-        <button class="number">7</button>
-        <button class="number">8</button>
-        <button class="number">9</button>
-        <button>*</button>
-        <button class="number">4</button>
-        <button class="number">5</button>
-        <button class="number">6</button>
-        <button>-</button>
-        <button class="number">1</button>
-        <button class="number">2</button>
-        <button class="number">3</button>
-        <button>+</button>
-        <button class="number">0</button>
-        <button class="number">.</button>
-        <button id="equal-bnt">=</button>
-      </div>
-    </div>
-  </body>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Calculadora online gratuita - básica e científica. Faça cálculos simples e complexos com nossa calculadora profissional.">
+    <meta name="keywords" content="calculadora, calculadora online, calculadora científica, calculadora grátis">
+    <title>Calculadora Online Gratuita - Básica e Científica</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <h1 class="logo">CalcPro</h1>
+                <nav class="nav">
+                    <a href="#calculator">Calculadora</a>
+                    <a href="#about">Sobre</a>
+                    <a href="#guide">Guia de Uso</a>
+                    <a href="#faq">FAQ</a>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h2 class="hero-title">Calculadora Online Gratuita</h2>
+                <p class="hero-description">Ferramenta profissional para cálculos básicos e científicos. Rápida, precisa e fácil de usar.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Calculator Section -->
+    <section id="calculator" class="calculator-section">
+        <div class="container">
+            <!-- AdSense Placeholder Top -->
+            <div class="ad-space">
+                <!-- Espaço para Google AdSense -->
+                <div class="ad-placeholder">Espaço para Anúncio</div>
+            </div>
+
+            <div class="calculator-wrapper">
+                <div class="calculator-header">
+                    <h3>Calculadora</h3>
+                    <div class="mode-toggle">
+                        <button id="basicMode" class="mode-btn active">Básica</button>
+                        <button id="scientificMode" class="mode-btn">Científica</button>
+                    </div>
+                </div>
+
+                <div class="calculator">
+                    <div class="display">
+                        <div id="expression" class="expression"></div>
+                        <input type="text" id="result" class="result" value="0" readonly>
+                    </div>
+
+                    <!-- Basic Calculator Buttons -->
+                    <div id="basicButtons" class="buttons">
+                        <button class="btn function" data-action="clear">C</button>
+                        <button class="btn function" data-action="delete">⌫</button>
+                        <button class="btn function" data-action="percentage">%</button>
+                        <button class="btn operator" data-value="/">÷</button>
+
+                        <button class="btn number" data-value="7">7</button>
+                        <button class="btn number" data-value="8">8</button>
+                        <button class="btn number" data-value="9">9</button>
+                        <button class="btn operator" data-value="*">×</button>
+
+                        <button class="btn number" data-value="4">4</button>
+                        <button class="btn number" data-value="5">5</button>
+                        <button class="btn number" data-value="6">6</button>
+                        <button class="btn operator" data-value="-">−</button>
+
+                        <button class="btn number" data-value="1">1</button>
+                        <button class="btn number" data-value="2">2</button>
+                        <button class="btn number" data-value="3">3</button>
+                        <button class="btn operator" data-value="+">+</button>
+
+                        <button class="btn number zero" data-value="0">0</button>
+                        <button class="btn number" data-value=".">.</button>
+                        <button class="btn equals" data-action="calculate">=</button>
+                    </div>
+
+                    <!-- Scientific Calculator Buttons -->
+                    <div id="scientificButtons" class="buttons scientific-buttons" style="display: none;">
+                        <button class="btn function" data-action="clear">C</button>
+                        <button class="btn function" data-action="delete">⌫</button>
+                        <button class="btn function" data-action="percentage">%</button>
+                        <button class="btn operator" data-value="/">÷</button>
+
+                        <button class="btn scientific" data-action="sin">sin</button>
+                        <button class="btn scientific" data-action="cos">cos</button>
+                        <button class="btn scientific" data-action="tan">tan</button>
+                        <button class="btn operator" data-value="*">×</button>
+
+                        <button class="btn scientific" data-action="log">log</button>
+                        <button class="btn scientific" data-action="ln">ln</button>
+                        <button class="btn scientific" data-action="sqrt">√</button>
+                        <button class="btn operator" data-value="-">−</button>
+
+                        <button class="btn scientific" data-action="pow">x²</button>
+                        <button class="btn scientific" data-action="exp">eˣ</button>
+                        <button class="btn scientific" data-action="pi">π</button>
+                        <button class="btn operator" data-value="+">+</button>
+
+                        <button class="btn number" data-value="7">7</button>
+                        <button class="btn number" data-value="8">8</button>
+                        <button class="btn number" data-value="9">9</button>
+                        <button class="btn scientific" data-value="(">(</button>
+
+                        <button class="btn number" data-value="4">4</button>
+                        <button class="btn number" data-value="5">5</button>
+                        <button class="btn number" data-value="6">6</button>
+                        <button class="btn scientific" data-value=")">)</button>
+
+                        <button class="btn number" data-value="1">1</button>
+                        <button class="btn number" data-value="2">2</button>
+                        <button class="btn number" data-value="3">3</button>
+                        <button class="btn scientific" data-action="e">e</button>
+
+                        <button class="btn number zero" data-value="0">0</button>
+                        <button class="btn number" data-value=".">.</button>
+                        <button class="btn equals" data-action="calculate">=</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- AdSense Placeholder Bottom -->
+            <div class="ad-space">
+                <div class="ad-placeholder">Espaço para Anúncio</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="content-section">
+        <div class="container">
+            <h2>Sobre Nossa Calculadora</h2>
+            <div class="content-grid">
+                <div class="content-card">
+                    <h3>Fácil de Usar</h3>
+                    <p>Interface intuitiva que funciona perfeitamente em desktop e dispositivos móveis. Use seu mouse, teclado ou toque para realizar cálculos rapidamente.</p>
+                </div>
+                <div class="content-card">
+                    <h3>Modo Científico</h3>
+                    <p>Além das operações básicas, oferecemos funções trigonométricas, logaritmos, potências e constantes matemáticas para cálculos avançados.</p>
+                </div>
+                <div class="content-card">
+                    <h3>100% Gratuito</h3>
+                    <p>Nossa calculadora é completamente gratuita e não requer cadastro ou download. Acesse de qualquer lugar, a qualquer momento.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Guide Section -->
+    <section id="guide" class="content-section alt">
+        <div class="container">
+            <h2>Guia de Uso</h2>
+            <div class="guide-content">
+                <div class="guide-item">
+                    <h3>Calculadora Básica</h3>
+                    <ul>
+                        <li><strong>Números:</strong> Clique nos números ou digite usando seu teclado</li>
+                        <li><strong>Operações:</strong> Use +, -, ×, ÷ para operações básicas</li>
+                        <li><strong>C:</strong> Limpa toda a expressão</li>
+                        <li><strong>⌫:</strong> Apaga o último caractere digitado</li>
+                        <li><strong>%:</strong> Calcula porcentagem do valor atual</li>
+                        <li><strong>=:</strong> Calcula o resultado (também pode usar Enter)</li>
+                    </ul>
+                </div>
+                <div class="guide-item">
+                    <h3>Calculadora Científica</h3>
+                    <ul>
+                        <li><strong>sin, cos, tan:</strong> Funções trigonométricas (em radianos)</li>
+                        <li><strong>log:</strong> Logaritmo na base 10</li>
+                        <li><strong>ln:</strong> Logaritmo natural (base e)</li>
+                        <li><strong>√:</strong> Raiz quadrada do número</li>
+                        <li><strong>x²:</strong> Eleva o número ao quadrado</li>
+                        <li><strong>π:</strong> Insere o valor de Pi (3.14159...)</li>
+                        <li><strong>e:</strong> Insere o número de Euler (2.71828...)</li>
+                        <li><strong>( ):</strong> Parênteses para agrupar operações</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section id="faq" class="content-section">
+        <div class="container">
+            <h2>Perguntas Frequentes</h2>
+            <div class="faq-list">
+                <div class="faq-item">
+                    <h3>A calculadora funciona offline?</h3>
+                    <p>Uma vez carregada a página, a calculadora funciona sem conexão com internet, pois todo o processamento é feito localmente no seu navegador.</p>
+                </div>
+                <div class="faq-item">
+                    <h3>Posso usar o teclado do computador?</h3>
+                    <p>Sim! Nossa calculadora tem suporte completo para teclado. Digite números e operadores normalmente, use Enter para calcular e Escape para limpar.</p>
+                </div>
+                <div class="faq-item">
+                    <h3>Como funciona o modo científico?</h3>
+                    <p>Clique no botão "Científica" no topo da calculadora para acessar funções avançadas como trigonometria, logaritmos e potências.</p>
+                </div>
+                <div class="faq-item">
+                    <h3>Há limite de dígitos?</h3>
+                    <p>A calculadora suporta até 15 dígitos significativos, suficiente para a maioria dos cálculos do dia a dia e científicos.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>CalcPro</h4>
+                    <p>Sua calculadora online gratuita e profissional.</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Links Rápidos</h4>
+                    <a href="#calculator">Calculadora</a>
+                    <a href="#about">Sobre</a>
+                    <a href="#guide">Guia</a>
+                </div>
+                <div class="footer-section">
+                    <h4>Recursos</h4>
+                    <a href="#faq">FAQ</a>
+                    <a href="#">Política de Privacidade</a>
+                    <a href="#">Termos de Uso</a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 CalcPro. Todos os direitos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
 </html>
