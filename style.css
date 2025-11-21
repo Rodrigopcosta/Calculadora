@@ -184,11 +184,25 @@ body {
   border-radius: 12px;
   padding: 20px;
   margin-bottom: 20px;
-  min-height: 100px;
+  min-height: 120px;
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
   align-items: flex-end;
+}
+
+/* Added history styling */
+.history {
+  font-size: 14px;
+  color: var(--gray-dark);
+  min-height: 20px;
+  margin-bottom: 4px;
+  word-break: break-all;
+  opacity: 0.7;
+  max-height: 60px;
+  overflow-y: auto;
+  width: 100%;
+  text-align: right;
 }
 
 .expression {
