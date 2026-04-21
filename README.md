@@ -8,7 +8,7 @@
 
 Calculadora online completa com modos básico e científico, desenvolvida com HTML, CSS e JavaScript puros, totalmente responsiva.
 
-🌐 [Ver Demo ao Vivo](https://calculo-rapido.netlify.app/) · 📂 [Repositório](https://github.com/Rodrigopcosta/Calculadora)
+🌐 [Ver Demo ao Vivo](https://calculo-rapido.netlify.app/)
 
 ---
 
