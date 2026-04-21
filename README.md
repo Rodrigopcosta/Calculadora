@@ -12,9 +12,9 @@ Calculadora online completa com modos básico e científico, desenvolvida com HT
 
 ---
 
-![Modo Básico](public/basico.png)
+![Desktop](public/screenshots/desktop.png)
 
-![Modo Científico](public/cientifico.png)
+![<Mobile>](public/screenshots/mobile.png)
 
 ---
 
